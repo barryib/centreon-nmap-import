@@ -1,0 +1,162 @@
+<script type="text/javascript" src="./include/common/javascript/tool.js"></script>
+
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/jquery.js"></script>
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/jquery.editinplace.packed.js"></script>
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/script.js"></script>
+
+<link type="text/css" rel="stylesheet" href="./modules/CentreonNmapImport/includes/css/default.css"/>
+
+<form {$form.attributes}>
+    {$form.hidden}
+    <div id="cni-top">
+        <div id="left-pannel">
+            <table class="ListTable">
+                <tr class="ListHeader">
+                    <td class="ListColHeaderLeft" colspan="2"><img src='./img/icones/16x16/house.gif'>&nbsp;&nbsp;{$form.header.scan_form}</td>
+                </tr>
+                <tr class="list_lvl_1">
+                    <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clipboard.gif'>&nbsp;&nbsp;Scan</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft">{$form.target.label}</td>
+                    <td class="ListColLeft">{$form.target.html}</td>
+                </tr>
+                <tr class="list_one">
+                    <td class="ListColLeft">{$form.netmask.label}</td>
+                    <td class="ListColLeft">{$form.netmask.html}&nbsp;&nbsp;Ex: 192.168.2.0/24 or hostname.com</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft">&nbsp;&nbsp;</td>
+                    <td class="ListColLeft">{$form.history.html}&nbsp;&nbsp;</td>
+                </tr>
+                <tr class="list_lvl_1">
+                    <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/gears_run.gif'>&nbsp;&nbsp;Scan Options</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft" colspan="2">
+                        {$form.is_os_detect.label}&nbsp;{$form.is_os_detect.html}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {$form.is_service_detect.label}&nbsp;{$form.is_service_detect.html}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {$form.is_all_detect.label}&nbsp;{$form.is_all_detect.html}
+                    </td>
+                </tr>
+            </table>
+            <div id="validForm" class="validForm">
+                <p class="oreonbutton">{$form.reset.html}&nbsp;&nbsp;&nbsp;{$form.submitScan.html}</p>
+            </div>
+            {if $cniMsg.msg}<div id="cni-msg" class="{$cniMsg.class}">{$cniMsg.msg}</div>{/if}
+        </div> <!-- end left-pannel -->
+        {if $isPrintHostArr}
+            <div id="right-pannel">
+                <table id="stats-pannel" class="ListTable">
+                    <tr class="ListHeader">
+                        <td class="FormHeader" colspan="2"><img src='./img/icones/16x16/chart.gif'>&nbsp;&nbsp;{$thead_stats}</td>
+                    </tr>
+                    <tr>
+                    <tr class="list_lvl_1">
+                        <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/about.gif'>&nbsp;&nbsp;{$header_gen_info}</td>
+                    </tr>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_scanT}</td>
+                        <td>{$row_scanV}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_versionT}</td>
+                        <td>{$row_versionV}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_argsT}</td>
+                        <td>{$row_argsV}</td>
+                    </tr>
+                    <tr class="list_lvl_1">
+                        <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clock.gif'>&nbsp;&nbsp;{$header_time_info}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_startT}</td>
+                        <td>{$row_startV}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_finishT}</td>
+                        <td>{$row_finishV}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_scan_timeT}</td>
+                        <td>{$row_scan_timeV}</td>
+                    </tr>
+                    <tr class="list_lvl_1">
+                        <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clients.gif'>&nbsp;&nbsp;{$header_hosts_info}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_upT}</td>
+                        <td>{$row_upV}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_downT}</td>
+                        <td>{$row_downV}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_totalT}</td>
+                        <td>{$row_totalV}</td>
+                    </tr>
+                </table>    
+            </div>
+        {/if}
+    </div> <!-- end cni-top -->
+    {if $nbHost > 0}
+        <br/><br/>
+        <table id="filter" class="ajaxOption">
+            <tr>
+                <td>Host&nbsp;</td>
+                <td><input type="text" id="search-cni-host" size="20"/>&nbsp;</td>
+                <td>{$form.filter_state.label}</td>
+                <td>{$form.filter_state.html}&nbsp;</td>
+                <td>{$form.filter_os.label}</td>
+                <td>{$form.filter_os.html}&nbsp;</td>
+                <td>{$form.filter_service.label}</td>
+                <td>{$form.filter_service.html}&nbsp;</td>
+                <td>{$form.filter_inDB.label}</td>
+                <td>{$form.filter_inDB.html}&nbsp;</td>
+            </tr>
+        </table>
+        <div class="validForm">
+            <p class="oreonbutton">{$form.submitImport.html}</p>
+        </div>
+        <br/>
+        <table id="host-list" class="ListTable">
+            <tr class='ListHeader'>
+                <td class="ListColHeaderPicker"><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/></td>
+                {if $cniMsg.class=='error'}<td class="ListColHeaderCenter">Error Reason</td>{/if}
+                <td class="ListColHeaderCenter">Hostname</td>
+                <td class="ListColHeaderCenter">Address</td>
+                <td class="ListColHeaderCenter">Status</td>
+                <td class="ListColHeaderCenter">OS</td>
+                <td class="ListColHeaderCenter">Poller</td>
+                <td class="ListColHeaderCenter">Template</td>
+                <td class="ListColHeaderCenter">Create Service</td>
+            </tr>
+            {section name=host loop=$hostArr}
+                <tr class="host-row {cycle values="list_two, list_one"} {$hostArr[host].class}">
+                    <td class="ListColPicker">{$hostArr[host].isImport}</td>
+                    {if $cniMsg.class=='error'}<td class="ListColPicker">{$hostArr[host].reason}</td>{/if}
+                    <td class="ListColCenter">
+                        <span class="editable" id="edit-{$hostArr[host].index}">{$hostArr[host].hostname}</span>{$hostArr[host].hHostname}
+                    </td>
+                    <td class="ListColCenter">{$hostArr[host].address}{$hostArr[host].hAddress}</td>
+                    <!--<td class="ListColCenter" {if $hostArr[host].status=="up"}style="color:green;"{else}style="color:red;"{/if}>
+                            {$hostArr[host].status}{$hostArr[host].hStatus}
+                    </td>-->
+                    <td class="ListColCenter">
+                        <img src="{if $hostArr[host].status=="up"}{$up_icon}{else}{$down_icon}{/if}" title="status" alt="{$hostArr[host].status}"/>
+                    </td>
+                    <td class="ListColCenter">{$hostArr[host].os}{$hostArr[host].hOs}{$hostArr[host].hClass}</td>
+                    <td class="ListColCenter">{$hostArr[host].ns_select}</td>
+                    <td class="ListColCenter">{$hostArr[host].hTpl}</td>
+                    <td class="ListColCenter">{$hostArr[host].dupSvTplAssoc.dupSvTplAssoc}</td>
+                </tr>
+            {/section}
+	</table>
+        <div class="validForm">
+            <p class="oreonbutton">{$form.submitImport.html}</p>
+        </div>
+    {/if}
+</form>

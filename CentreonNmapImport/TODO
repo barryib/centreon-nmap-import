@@ -1,0 +1,41 @@
+2011-02-24      Ibrahima BARRY
+    * Install SSH2 module for apache
+    * Test ssh command
+    
+2011-03-09      Ibrahima BARRY
+    * Create a cmd class which would interface the cmds' table to manage it
+    
+2011-03-09      Ibrahima BARRY
+    * Allow multiple scan from a remote poller (see nmap_outputfile).
+    * Ajaxification of Poller Scan page to get automaticaly notifications from cmds' table.
+    * bin/cnicore.php:
+        + Write the script in a manner it can be lunched with args (sleep-time, deamon-mode, ...)
+        + Use PEAR class called SYSTEM_DAEMON to daemonize cnicore.php
+
+2011-03-10      Ibrahima BARRY
+    * Write a module installer (take after the existant to go fast)
+        + Check for module's pear dependancy
+        + Copy files with right owner and permissions (bin/cnicore.php)
+        + Add sudo lines to allow nmap os detection
+    * bin/cnicore.php:
+        + Fork to get one process per ssh_command/scp (use pcntl_alarm to set process time to live)
+        + Find a solution to use many CentreonDB objects (one per thread)
+        
+2011-03-17      Ibrahima BARRY
+    * Add option to get automatically hosts from XML file when the ssh and scp command are done.
+    
+2011-04-06      Ibrahima BARRY
+    * Move temp scp file from /tmp, because the conten of /tmp is ereased after each reboot
+    
+2011-04-12      Ibrahima BARRY
+    * Test if cnicore is running or not and System_Daemon installed before doing a distributed nmap scan
+    * clean all complete command after their results had been correctly imported
+    
+2011-04-14      Ibrahima BARRY
+    * Solve permission problems with filesUpload directory to allow cnicore (nagios user) to write inside
+    * Use prepareHostsToPrint to format hosts from controller.json.php
+    * Solve $isShowExit problem from prepareHostsToPrint
+    
+2011-06-15      Ibrahima BARRY
+    * Find out a way to sort an array with array_walk function
+    * Desynchronize local scan, to allow multiple and simultaneous scan over SSH

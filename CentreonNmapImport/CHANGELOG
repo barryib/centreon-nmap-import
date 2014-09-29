@@ -1,0 +1,110 @@
+2011-02-23      Ibrahima BARRY
+    * common.php:
+        + Modify prepareStatsToPrint() to use Net_Nmap_Stats object
+        + Change from prepareHostsToPrint($hosts, $printForm) to prepareHostsToPrint($hosts, $printForm, $isShowExit = false)
+        + Change from prepareHostsObjToPrint($hosts, $printForm) to prepareHostsObjToPrint($hosts, $printForm, $isShowExit = false)
+        + Change from prepareHostsArrToPrint($hosts, $printForm) to prepareHostsArrToPrint($hosts, $printForm, $isShowExit = false)
+        + Add checkPrerequis()
+        + Add isImportedInto()
+    * class/CNI_Nmap.class.php: Remove all and create an empty CNI_Nmap class
+    * core/formOS.php: Fix label problem on use_template_default checkbox
+    
+20011-02-24     Ibrahima BARRY
+    * common.php: Fix nullIfNotIsset() to not consider '0' as NULL
+    * DB-Func.php: Modify updateGeneralOptions() to use nullIfNotIssetWalk() with array_walk
+    * core/option.php: Add $_GET and $_POST test before affectation to $select, $ns_id and $poller_id
+    * core/importXml.php: Use of isImportedInto() to test if they are hosts to import before importation
+    * core/pollerScan.php:
+        + Add file
+        + Copy and Modification from localScan.php
+    * core/generalOptions.php: Add use_sudo and ssh_binary into the form
+    * tpl/generalOptions.php: Add use_sudo and ssh_binary into the template
+    * sql/install.sql:
+        + Add use_sudo into centreon_nmap_import_opt table
+        + Change the topology of option's pages from 5xxxx to 6xxxx
+    * sql/uninstall.sql: Change the topology of option's pages from 5xxxx to 6xxxx
+    * tpl/pollerScan.ihtml:
+        + Add file
+        + Copy and Modification from localScan.ihtml
+    * TODO: Add file
+    * class/CNI_Nmap.class.php: Add createCNICommandLine methode
+    * class/CNI_Cmd.class.php:
+        + Fix some bug with the constructor (use bad database field)
+        + Remove array_merge from _createNmapCmd methode.
+            That allow a separation between constructor Nmap options (nmap_binary, output_file)
+            and other options (os_detection, service_info, all_detect) which came from external
+            
+2011-03-03      Ibrahima BARRY
+    * includes/js/jquery.editinplace.packed.js: Add file
+    * Add edit inplace feature in .ihtml concerned files
+    * Add Services creation feature
+    * Add patched Net_Nmap package
+    * DB-Func.php:
+        + Add createCNIHostTemplateService() function
+        + Rename insertCNIHostInDB() to insertCNIHostListInDB()
+        + Add another insertCNIHostInDB() function
+        
+2011-03-09      Ibrahima BARRY
+    * bin/cnicore.php: add file
+    * class/CNI_Cmd.class.php: Modified the class to be conform with cmds' table.
+    * core/pollerScan.php: Use of CNI_Cdm class
+    * sql/install: Create centreon_nmap_import_cmds table
+    * sql/uninstall: Drop centreon_nmap_import_cmds table
+    
+2011-03-10      Ibrahima BARRY
+    * bin/cnicore.php:
+        + Write the script in a manner to can be lunch with args (help, no-daemon, write-initd)
+        + Use PEAR class called SYSTEM_DAEMON to deamonize cnicore.php
+    * infos/infos.txt:
+        + Remove pear command install Net_Nmap package
+        + Add pear command to install System_Daemon package
+        
+2011-03-12      Ibrahima BARRY
+    * core/cmd.json.php: Add file. It is a controller for CNI_Cmd.class.php
+    * class/CNI_Cmd.class.php: Add some new functions to interface better centreon_nmap_import_cmds
+    * includes/js/script.cmd.js: Add file. It is an ajaxification script for poller scan page
+    * Move centreon nmap import configuration submenu from 'Configuration' to 'Module' section
+    * class/Nmap.php: Fix bug on sudo scan option
+    
+2011-03-13      Ibrahima BARRY
+    * Fix pagination's bugs in listOS and listPollers pages
+    
+2011-04-12      Ibrahima BARRY
+    * core/pollerScan.php
+    * includes/js/pollerScan.ajax.js:
+        + Add notifications icons on pollers' name when a command is done.
+        + Add start and stop cnicore functionality.
+    * core/controller.json.php: Add some functions to get daemonStatus(), getDaemonStatus() and setDaemonStatus($status)
+    * infos/infos.txt: Add some news informations to help user before and after the module's installation
+    
+    
+    * Add scan with sudo option to each poller for discovering os from remote scan
+    * core/controller.json.php:
+        + Fix a bug with getDaemonStatus() which return some irregullars responses sometimes => change "ps -ax" to "ps au"
+        + remove command into the table if the scan resulting for it is correctly imported
+    * includes/js/pollerScan.ajax.js:
+        + clean all complete command after their results had been correctly imported
+    * bin/cnicore.php:
+        + Change destination file name as target@poller.xml
+        + Add sleep time configuration from administration pannel
+        
+2011-04-13      Ibrahima BARRY
+    * Add sort hosts options
+    * Add possibility to configure refresh time for heartbeat from the admin pannel
+    
+2011-04-14      Ibrahima BARRY
+    * Fix Bug #1532: Cannot import multiple "unknown" hosts
+<<<<<<< .mine
+    * Fix Bug #1533: Hosts imported from "Local scan" have no poller assigned
+    
+2011-07-28      Stephan Haslbeck
+    Corrected some errors, made the module compatible with Centreon 2.2 and included a simple automatic selection of the host template based on the host OS
+
+    * CentreonNmapImport/DB-Func.php: Add of getDefaultTemplateForOs function
+    * CentreonNmapImport/bin/cnicore.php: change nmap xml file name to targetname_netmask@poller.xml
+    * CentreonNmapImport/common.php: Add usage of getDefaultTemplateForOs
+    * CentreonNmapImport/core/controller.json.php: Change older centreon object to those used by Centreon 2.2 (EX: Session.class.php -> centreonSession.class.php)
+    * CentreonNmapImport/sql/install.sql: Use sudo is now the default option
+    * CentreonNmapImport/tpl/importXml.ihtml  |
+    * CentreonNmapImport/tpl/localScan.ihtml  |-> fix the js integration for editinplace fonctionnality
+    * CentreonNmapImport/tpl/pollerScan.ihtml |

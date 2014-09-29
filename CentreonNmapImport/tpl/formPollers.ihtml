@@ -1,0 +1,67 @@
+<script type="text/javascript" src="./include/common/javascript/tool.js"></script>
+<form {$form.attributes}>
+    {$form.hidden}
+    <div id="validFormTop">
+        <p class="oreonbutton">{$form.submitBtn.html}&nbsp;&nbsp;&nbsp;{$form.reset.html}</p>
+    </div>
+    <div id='tab1' class='tab'>
+        <table class="ListTable">
+            <tr class="ListHeader">
+                <td class="FormHeader" colspan="2">&nbsp;<img src='./img/icones/16x16/text_code_colored.gif'>&nbsp;&nbsp;{$form.header.title}</td>
+            </tr>
+            <tr class="list_lvl_1">
+                <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clipboard.gif'>&nbsp;&nbsp;{$form.header.poller_info}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.ns_id.label}</td>
+                <td class="FormRowValue">{$form.ns_id.html}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.name.label}</td>
+                <td class="FormRowValue">{$form.name.html}</td>
+            </tr>
+            <tr class="list_two">
+                <td class="FormRowField">{$form.ip_address.label}</td>
+                <td class="FormRowValue">{$form.ip_address.html}</td>
+            </tr>
+
+            <tr class="list_lvl_1">
+                <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/lock.gif'>&nbsp;&nbsp;{$form.header.ssh_info}</td>
+            </tr>
+            <tr class="list_two">
+                <td class="FormRowField">{$form.ssh_port.label}</td>
+                <td class="FormRowValue">{$form.ssh_port.html}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.connection_timeout.label}</td>
+                <td class="FormRowValue">{$form.connection_timeout.html}</td>
+            </tr>
+            
+            <tr class="list_lvl_1">
+                <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/hat_red.gif'>&nbsp;&nbsp;{$form.header.nmap_info}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.nmap_binary.label}</td>
+                <td class="FormRowValue">{$form.nmap_binary.html}</td>
+            </tr>
+            <tr class="list_two">
+                <td class="FormRowField">{$form.nmap_output_file.label}</td>
+                <td class="FormRowValue">{$form.nmap_output_file.html}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.use_sudo.label}</td>
+                <td class="FormRowValue">
+                    {$form.use_sudo.html}
+                    &nbsp;&nbsp;&nbsp;
+                    <img src="./img/icones/16x16/warning.gif"/>&nbsp;<i>{$use_sudo_warning}</i>
+                </td>
+            </tr>
+        </table>
+        <!--<input type='hidden' name='o' id='o' value=''>-->
+    </div>
+    <div id="validForm">
+        <p class="oreonbutton">{$form.submitBtn.html}&nbsp;&nbsp;&nbsp;{$form.reset.html}</p>
+    </div>
+    {$form.hidden}
+</form>
+

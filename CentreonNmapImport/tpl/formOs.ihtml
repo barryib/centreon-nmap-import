@@ -1,0 +1,46 @@
+<script type="text/javascript" src="./include/common/javascript/tool.js"></script>
+<form {$form.attributes}>
+    {$form.hidden}
+    <div id="validFormTop">
+        <p class="oreonbutton">{$form.submit.html}&nbsp;&nbsp;&nbsp;{$form.reset.html}</p>
+    </div>
+    <div id='tab1' class='tab'>
+        <table class="ListTable">
+            <tr class="ListHeader">
+                <td class="FormHeader" colspan="2">&nbsp;<img src='./img/icones/16x16/component_green.gif'>&nbsp;&nbsp;{$form.header.title}</td>
+            </tr>
+            <tr class="list_lvl_1">
+                <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clipboard.gif'>&nbsp;&nbsp;{$form.header.os_info}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.os_name.label}</td>
+                <td class="FormRowValue">{$form.os_name.html}</td>
+            </tr>
+           
+            <tr class="list_lvl_1">
+                <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/house.gif'>&nbsp;&nbsp;{$form.header.vendor_info}</td>
+            </tr>
+            <tr class="list_two">
+                <td class="FormRowField">{$form.vendor_logo.label}</td>
+                <td class="FormRowValue">{$form.vendor_logo.html}</td>
+            </tr>
+            
+            <tr class="list_lvl_1">
+                <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/element_template.gif'>&nbsp;&nbsp;{$form.header.tpl_info}</td>
+            </tr>
+            <tr class="list_one">
+                <td class="FormRowField">{$form.template_id.label}</td>
+                <td class="FormRowValue">{$form.template_id.html}</td>
+            </tr>
+            <tr class="list_two">
+                <td class="FormRowField">{$form.use_default_template.label}</td>
+                <td class="FormRowValue">{$form.use_default_template.html}</td>
+            </tr>
+        </table>
+    </div>
+    <div id="validForm">
+        <p class="oreonbutton">{$form.submit.html}&nbsp;&nbsp;&nbsp;{$form.reset.html}</p>
+    </div>
+    {$form.hidden}
+</form>
+

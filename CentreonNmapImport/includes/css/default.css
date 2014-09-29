@@ -1,0 +1,39 @@
+#cni-top {float: left; width: 100%; margin-bottom: 30px;}
+
+#left-pannel {width: 50%; float: left; margin: 0 2% 0 0;}
+#left-pannel table {width: 100%;}
+#left-pannel table td input, #left-pannel table td select{padding: 0 3px;}
+
+#right-pannel {width: 48%;}
+
+#filter{float: left}
+
+#cni-msg {background-position: 10px center; background-repeat: no-repeat; border: 1px solid; float: left; height: 35px; margin-top: 10px; padding: 15px 10px 0 50px; text-align: left; width: 89%;}
+#cni-msg.info {color: #00529B; background-color: #BDE5F8; background-image: url('../img/info.png');}
+#cni-msg.success {color: #4F8A10; background-color: #DFF2BF; background-image: url('../img/success.png');}
+#cni-msg.warning {color: #9F6000; background-color: #FEEFB3; background-image: url('../img/warning.png');}
+#cni-msg.error {color: #D8000C; background-color: #FFBABA; background-image: url('../img/error.png');}
+
+#poller-list #mainnav {position: inherit;}
+#poller-list #mainnav li a {position: relative;}
+#poller-list #mainnav li a span {background-color: red; color: #FFFFFF; display: block; height: 13px; padding: 5px; position: absolute; right: -14px; text-align: center; top: -25px; width: 15px; z-index: 999;}
+
+.hidden {display: none;}
+.visible {display: block;}
+.validForm{text-align: right; padding: 10px; float: right;}
+
+td.SubTableTactical.started {background-color:#19EE11;font-weight:bold;}
+td.SubTableTactical.stoped {background-color:#D8000C;font-weight:bold;}
+
+/* style notification */
+/*
+     background: none repeat scroll 0 0 red;
+    color: #FFFFFF;
+    height: 15px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -13px;
+    width: 20px;
+    z-index: 9999;
+*/

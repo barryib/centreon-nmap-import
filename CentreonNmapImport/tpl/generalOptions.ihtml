@@ -1,0 +1,111 @@
+<form {$form.attributes}>
+    {$form.hidden}
+    <table class="ListTable">
+        <tr class="ListHeader">
+            <td colspan="2" class="FormHeader">
+                &nbsp;<img src="./img/icones/16x16/tool.gif">&nbsp;{$form.header.header}
+            </td>   
+        </tr>
+        
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="{$server_info_icone}">&nbsp;&nbsp;{$server_info_header}
+            </td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.my_ip_address.label}</td>
+            <td class="FormRowValue">{$form.my_ip_address.html}</td>
+        </tr>
+        <tr class="list_two">
+            <td class="FormRowField">{$form.history_size.label}</td>
+            <td class="FormRowValue">{$form.history_size.html}</td>
+        </tr>
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="./img/icones/16x16/gear_view.gif">&nbsp;&nbsp;{$form.header.daemon}
+            </td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.daemon_sleep_time.label}</td>
+            <td class="FormRowValue">{$form.daemon_sleep_time.html}&nbsp;seconds</td>
+        </tr>
+        <tr class="list_two">
+            <td class="FormRowField">{$form.path_file_upload.label}</td>
+            <td class="FormRowValue">{$form.path_file_upload.html}</td>
+        </tr>
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="./img/icones/16x16/refresh.gif">&nbsp;&nbsp;{$form.header.refresh}
+            </td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.heart_beat_delay.label}</td>
+            <td class="FormRowValue">{$form.heart_beat_delay.html}&nbsp;seconds</td>
+        </tr>
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="./img/icones/16x16/import2.gif">&nbsp;&nbsp;{$form.header.import}
+            </td>
+        </tr>
+        <tr class="list_two">
+            <td class="FormRowField">{$form.allowed_dup_names.label}</td>
+            <td class="FormRowValue">
+                {$form.allowed_dup_names.html}
+                &nbsp;&nbsp;&nbsp;<i>{$allowed_dup_names_info}</i>
+            </td>
+        </tr>
+
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="./img/icones/16x16/text_rich_colored.gif">&nbsp;&nbsp;{$form.header.display}
+            </td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.hosts_sort_type.label}</td>
+            <td class="FormRowValue">{$form.hosts_sort_type.html}</td>
+        </tr>
+        <tr class="list_two">
+            <td class="FormRowField">{$form.hosts_sort_order.label}</td>
+            <td class="FormRowValue">{$form.hosts_sort_order.html}</td>
+        </tr>
+        
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="{$ssh_icone}">&nbsp;&nbsp;{$ssh_header}
+            </td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.ssh_binary.label}</td>
+            <td class="FormRowValue">{$form.ssh_binary.html}</td>
+        </tr>
+        <tr class="list_two">
+            <td class="FormRowField">{$form.ssh_port.label}</td>
+            <td class="FormRowValue">{$form.ssh_port.html}</td>
+        </tr>
+        
+        <tr class="list_lvl_1">
+            <td colspan="2" class="ListColLvl1_name">
+                &nbsp;<img src="{$nmap_info_icone}">&nbsp;&nbsp;{$nmap_info_header}
+            </td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.nmap_binary.label}</td>
+            <td class="FormRowValue">{$form.nmap_binary.html}</td>
+        </tr>
+        <tr class="list_two">
+            <td class="FormRowField">{$form.output_file.label}</td>
+            <td class="FormRowValue">{$form.output_file.html}</td>
+        </tr>
+        <tr class="list_one">
+            <td class="FormRowField">{$form.use_sudo.label}</td>
+            <td class="FormRowValue">
+                {$form.use_sudo.html}
+                &nbsp;&nbsp;&nbsp;
+                <img src="./img/icones/16x16/warning.gif"/>&nbsp;<i>{$use_sudo_warning}</i>
+            </td>
+        </tr>
+    </table>
+    <div id="validForm">
+        <p>{$form.optSubmit.html}&nbsp;&nbsp;&nbsp;{$form.optRst.html}</p>
+    </div>
+</form>

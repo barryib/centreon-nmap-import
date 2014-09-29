@@ -1,0 +1,254 @@
+<script type="text/javascript" src="./include/common/javascript/tool.js"></script>
+
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/jquery.js"></script>
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/jquery.editinplace.packed.js"></script>
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/script.js"></script>
+<script type="text/javascript" src="./modules/CentreonNmapImport/includes/js/pollerScan.ajax.js"></script>
+<link type="text/css" rel="stylesheet" href="./modules/CentreonNmapImport/includes/css/default.css"/>
+
+<form {$form.attributes}>
+    {$form.hidden}
+    <div id="cni-top">
+        <div id="left-pannel">
+            <table class="ListTable">
+                <tr class="ListHeader">
+                    <td class="ListColHeaderLeft" colspan="2"><img src='./img/icones/16x16/client_network.gif'>&nbsp;&nbsp;{$form.header.header}</td>
+                </tr>
+                <tr class="list_lvl_1">
+                    <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clipboard.gif'>&nbsp;&nbsp;{$form.header.scan_form}</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft">Daemon Status</td>
+                    <td class="ListColLeft">
+                        <table style="width:20%; float:left;"><td class="SubTacticalDT">
+			    <table><tr><td class="SubTableTactical">
+                                <a id="set-daemon-status" href="#stop" style="color:#FFF;" title="click to stop cnicore">Unknow</a>
+                            </td></tr></table>
+			</td></table>
+                        &nbsp;&nbsp;
+                        <a id="get-daemon-status" title="Refresh status" href="#" style=" line-height: 25px;">
+                            <img src="./img/icones/16x16/refresh.gif" alt="Refresh status">
+                        </a>
+                    </td>
+                </tr>
+                <tr class="list_one">
+                    <td class="ListColLeft">{$form.poller_select.label}</td>
+                    <td class="ListColLeft">{$form.poller_select.html}</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft">{$form.target.label}</td>
+                    <td class="ListColLeft">{$form.target.html}</td>
+                </tr>
+                <tr class="list_one">
+                    <td class="ListColLeft">{$form.netmask.label}</td>
+                    <td class="ListColLeft">{$form.netmask.html}&nbsp;&nbsp;Ex: 192.168.2.0/24 or hostname.com</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft">&nbsp;&nbsp;</td>
+                    <td class="ListColLeft">{$form.history.html}&nbsp;&nbsp;</td>
+                </tr>
+                <tr class="list_lvl_1">
+                    <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/gears_run.gif'>&nbsp;&nbsp;Scan Options</td>
+                </tr>
+                <tr class="list_two">
+                    <td class="ListColLeft" colspan="2">
+                        {$form.is_os_detect.label}&nbsp;{$form.is_os_detect.html}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {$form.is_service_detect.label}&nbsp;{$form.is_service_detect.html}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {$form.is_all_detect.label}&nbsp;{$form.is_all_detect.html}
+                    </td>
+                </tr>
+            </table>
+            <div id="validForm" class="validForm">
+                <p class="oreonbutton">{$form.reset.html}&nbsp;&nbsp;&nbsp;{$form.submitScan.html}</p>
+            </div>
+            {if $cniMsg.msg}<div id="cni-msg" class="{$cniMsg.class}">{$cniMsg.msg}</div>{/if}
+        </div> <!-- end left-pannel -->
+        {if $isPrintHostArr}
+            <div id="right-pannel">
+                <table id="stats-pannel" class="ListTable">
+                    <tr class="ListHeader">
+                        <td class="FormHeader" colspan="2"><img src='./img/icones/16x16/chart.gif'>&nbsp;&nbsp;{$thead_stats}</td>
+                    </tr>
+                    <tr>
+                    <tr class="list_lvl_1">
+                        <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/about.gif'>&nbsp;&nbsp;{$header_gen_info}</td>
+                    </tr>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_scanT}</td>
+                        <td>{$row_scanV}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_versionT}</td>
+                        <td>{$row_versionV}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_argsT}</td>
+                        <td>{$row_argsV}</td>
+                    </tr>
+                    <tr class="list_lvl_1">
+                        <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clock.gif'>&nbsp;&nbsp;{$header_time_info}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_startT}</td>
+                        <td>{$row_startV}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_finishT}</td>
+                        <td>{$row_finishV}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_scan_timeT}</td>
+                        <td>{$row_scan_timeV}</td>
+                    </tr>
+                    <tr class="list_lvl_1">
+                        <td class="ListColLvl1_name" colspan="2"><img src='./img/icones/16x16/clients.gif'>&nbsp;&nbsp;{$header_hosts_info}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_upT}</td>
+                        <td>{$row_upV}</td>
+                    </tr>
+                    <tr class="list_one">
+                        <td>{$row_downT}</td>
+                        <td>{$row_downV}</td>
+                    </tr>
+                    <tr class="list_two">
+                        <td>{$row_totalT}</td>
+                        <td>{$row_totalV}</td>
+                    </tr>
+                </table>    
+            </div>
+        {/if}
+    </div> <!-- end cni-top -->
+    {if $nbHost > 0}
+        <br/><br/>
+        <table id="filter" class="ajaxOption">
+            <tr>
+                <td>Host&nbsp;</td>
+                <td><input type="text" id="search-cni-host" size="20"/>&nbsp;</td>
+                <td>{$form.filter_state.label}</td>
+                <td>{$form.filter_state.html}&nbsp;</td>
+                <td>{$form.filter_os.label}</td>
+                <td>{$form.filter_os.html}&nbsp;</td>
+                <td>{$form.filter_service.label}</td>
+                <td>{$form.filter_service.html}&nbsp;</td>
+                <td>{$form.filter_inDB.label}</td>
+                <td>{$form.filter_inDB.html}&nbsp;</td>
+            </tr>
+        </table>
+        <div class="validForm">
+            <p class="oreonbutton">{$form.submitImport.html}</p>
+        </div>
+        <br/>
+        <table id="host-list" class="ListTable">
+            <tr class='ListHeader'>
+                <td class="ListColHeaderPicker"><input type="checkbox" name="checkall"/></td>
+                {if $cniMsg.class=='error'}<td class="ListColHeaderCenter">Error Reason</td>{/if}
+                <td class="ListColHeaderCenter">Hostname</td>
+                <td class="ListColHeaderCenter">Address</td>
+                <td class="ListColHeaderCenter">Status</td>
+                <td class="ListColHeaderCenter">OS</td>
+                <td class="ListColHeaderCenter">Poller</td>
+                <td class="ListColHeaderCenter">Template</td>
+                <td class="ListColHeaderCenter">Create Service</td>
+            </tr>
+            {section name=host loop=$hostArr}
+                <tr class="host-row {cycle values="list_two, list_one"} {$hostArr[host].class}">
+                    <td class="ListColPicker">{$hostArr[host].isImport}</td>
+                    {if $cniMsg.class=='error'}<td class="ListColPicker">{$hostArr[host].reason}</td>{/if}
+                    <td class="ListColCenter">
+                        <span class="editable" id="edit-{$hostArr[host].index}">{$hostArr[host].hostname}</span>{$hostArr[host].hHostname}
+                    </td>
+                    <td class="ListColCenter">{$hostArr[host].address}{$hostArr[host].hAddress}</td>
+                    <!--<td class="ListColCenter" {if $hostArr[host].status=="up"}style="color:green;"{else}style="color:red;"{/if}>
+                            {$hostArr[host].status}{$hostArr[host].hStatus}
+                    </td>-->
+                    <td class="ListColCenter">
+                        <img src="{if $hostArr[host].status=="up"}{$up_icon}{else}{$down_icon}{/if}" title="status" alt="{$hostArr[host].status}"/>
+                    </td>
+                    <td class="ListColCenter">{$hostArr[host].os}{$hostArr[host].hOs}{$hostArr[host].hClass}</td>			
+                    <td class="ListColCenter">{$hostArr[host].ns_select}</td>
+                    <td class="ListColCenter">{$hostArr[host].hTpl}</td>
+                    <td class="ListColCenter">{$hostArr[host].dupSvTplAssoc.dupSvTplAssoc}</td>
+                </tr>
+            {/section}
+	</table>
+        <div class="validForm">
+            <p class="oreonbutton">{$form.submitImport.html}</p>
+        </div>
+    {/if}
+    
+    <div id="poller-ajax"></div>
+    <input type="hidden" id="up-icon" value="{$up_icon}"/>
+    <input type="hidden" id="down-icon" value="{$down_icon}"/>
+</form>
+
+
+<!--<div id="poller-list">-->
+<!--    <ul id="mainnav">-->
+<!--        <li id="" class="a"><a href="#">Central</a></li>-->
+<!--        <li id="" class="a"><a href="#">Nmap Test</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+<!---->
+<!-- <div class="tab" id="">-->
+<!--    <table class="ListTable" style="margin-top: 0;">-->
+<!--	<tr class="ListHeader">-->
+<!--	    <td valign="top" class="FormHeader">&nbsp;Central&nbsp;</td>-->
+<!--	</tr>-->
+<!--	<tr>-->
+<!--	    <td>-->
+<!--		<table id="" class="ajaxOption cmd-mainnav">-->
+<!--		    <tr class="nav">-->
+<!--			<td><a href="#">localhost</a>&nbsp;</td>-->
+<!--			<td><a href="#">192.168.10.2/24</a>&nbsp;</td>-->
+<!--                        <td><a href="#">google.com</a>&nbsp;</td>-->
+<!--		    </tr>-->
+<!--		</table>-->
+<!--	    </td>-->
+<!--	</tr>-->
+<!--        <tr>-->
+<!--            <td align="center" colspan="" id="pollerID-board">-->
+<!--                <table class="ListTable" id="host-list">-->
+<!--                    <tr class="ListHeader">-->
+<!--                        <td class="ListColHeaderPicker"><input type="checkbox" name="checkall"></td>-->
+<!--                        <td class="ListColHeaderCenter">Hostname</td>-->
+<!--                        <td class="ListColHeaderCenter">Address</td>-->
+<!--                        <td class="ListColHeaderCenter">Status</td>-->
+<!--                        <td class="ListColHeaderCenter">OS</td>-->
+<!--                        <td class="ListColHeaderCenter">Template</td>-->
+<!--                        <td class="ListColHeaderCenter">Create Service</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="host-row list_two  status-up os-Too-many-fingerprints-match-this-host-to-give-specific-OS-details db-no service-ssh service-smtp service-http service-rpcbind service-mysql">-->
+<!--                        <td class="ListColPicker"><input type="checkbox" id="qf_209e05" value="1" name="hosts[0][isImport]"></td>-->
+<!--                        <td class="ListColCenter">-->
+<!--                            <span id="edit-0" class="editable">localhost</span><input type="hidden" value="localhost" name="hosts[0][hostname]">-->
+<!--                        </td>-->
+<!--                        <td class="ListColCenter">127.0.0.1<input type="hidden" value="127.0.0.1" name="hosts[0][address]"></td>-->
+<!--                        <td class="ListColCenter">-->
+<!--                            <img alt="up" title="status" src="./modules/CentreonNmapImport/includes/img/arrow_up.gif">-->
+<!--                        </td>-->
+<!--                        <td class="ListColCenter">Too many fingerprints match this host to give specific OS details<input type="hidden" value="Too many fingerprints match this host to give specific OS details" name="hosts[0][os]"><input type="hidden" value=" status-up os-Too-many-fingerprints-match-this-host-to-give-specific-OS-details db-no service-ssh service-smtp service-http service-rpcbind service-mysql" name="hosts[0][class]"></td>			-->
+<!--                        <td class="ListColCenter">-->
+<!--                            <select name="hosts[0][hTpl]">-->
+<!--                                <option value="2">generic-host</option>-->
+<!--                                <option value="12">Printers</option>-->
+<!--                                <option value="10">Router-Cisco</option>-->
+<!--                                <option value="11">Router-HP</option>-->
+<!--                                <option value="3">Servers-Linux</option>-->
+<!--                                <option value="4">Servers-Win2K</option>-->
+<!--                                <option value="5">Servers-Win2K3</option>-->
+<!--                                <option value="7">Switchs-3Com</option>-->
+<!--                                <option value="6">Switchs-Cisco</option>-->
+<!--                                <option value="8">Switchs-HP</option>-->
+<!--                                <option value="9">Switchs-NORTEL</option>-->
+<!--                                <option value="13">UPS</option>-->
+<!--                            </select>-->
+<!--                        </td>-->
+<!--                        <td class="ListColCenter"><input type="checkbox" id="qf_b4d61e" value="1" name="hosts[0][dupSvTplAssoc][dupSvTplAssoc]"></td>-->
+<!--                    </tr>-->
+<!--            	</tbody></table>-->
+<!--            </td>-->
+<!--        </tr>	 		-->
+<!--    </table>-->
+<!--</div>-->
