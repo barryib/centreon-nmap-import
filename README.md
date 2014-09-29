@@ -21,7 +21,8 @@ chown -R www-data.www-data CentreonNmapImport
 
 ##After installation
 
-IF YOU WANT TO USE THE OS DISCOVER FUNCTION :
+**IF YOU WANT TO USE THE OS DISCOVER FUNCTION :**
+
 Edit sudo file and add these few lines at the end:
 
 ```shell
